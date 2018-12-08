@@ -1,0 +1,24 @@
+// Verify that the response code is 200
+pm.test("response is ok", function () {
+    pm.response.to.have.status(200);
+});
+
+// Verify that the response time is under 200ms
+pm.test("Response time is less than 200ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(200);
+});
+
+// Verify that Clementina DuBuque is available
+pm.test("DuBuque user is present", function () {
+    pm.expect(pm.response.text()).to.include("Clementina DuBuque");
+});
+
+// Verify that Content type is present in header
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+// Verify if there are users working at Zinio
+pm.test("Zinio is not present in body", function () {
+    pm.expect(pm.response.text()).to.include("Zinio");
+});
