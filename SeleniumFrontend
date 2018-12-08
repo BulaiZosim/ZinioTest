@@ -1,0 +1,26 @@
+# script for a login proccess + subscribing to a magazine on zinio.com 
+# project needs all associated dependencies to run 
+
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from time import sleep
+
+driver = webdriver.Chrome()
+
+driver.get("https://www.zinio.com/")
+
+driver.find_element_by_id("user-logIn").click()
+driver.find_element_by_id("signUp-signInLink").click()    
+driver.find_element_by_id("signIn-email").send_keys("emanuel_zosim@gmail.com")          
+driver.find_element_by_id("signIn-password").send_keys("TestPassword")           
+driver.find_element_by_id("signIn-submit").click()
+sleep(2)
+driver.find_elements_by_class_name("Issue")[0].click()
+sleep(2)
+driver.find_element_by_id("issue-subscribeButton").click()
+sleep(2)
+driver.find_element_by_id("cart-checkOutButton").click()
+driver.find_element_by_id("checkout-continueButton").click()
+sleep(5)
+driver.quit()
